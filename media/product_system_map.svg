@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Conceptual SetFlow product system map</title>
+  <desc id="desc">A conceptual product map, not an app screenshot, showing six product areas around a workout lifecycle.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071321"/>
+      <stop offset="1" stop-color="#102C42"/>
+    </linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="96" y="96" fill="#F6FAFD" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="54" font-weight="700">SetFlow product system</text>
+  <text x="98" y="142" fill="#8FB8CC" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="24">Conceptual product map — not an app screenshot</text>
+
+  <rect x="96" y="205" width="1408" height="238" rx="34" fill="#0D2235" stroke="#2D5269" filter="url(#shadow)"/>
+  <text x="138" y="258" fill="#F6FAFD" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="25" font-weight="700">PRIMARY PRODUCT AREAS</text>
+
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+    <g><rect x="138" y="296" width="190" height="102" rx="22" fill="#153D55"/><circle cx="176" cy="347" r="15" fill="#35C3B4"/><text x="205" y="356" fill="#F6FAFD" font-size="25" font-weight="650">HOME</text></g>
+    <g><rect x="355" y="296" width="190" height="102" rx="22" fill="#153D55"/><circle cx="393" cy="347" r="15" fill="#E47762"/><text x="422" y="356" fill="#F6FAFD" font-size="23" font-weight="650">WELLNESS</text></g>
+    <g><rect x="572" y="296" width="190" height="102" rx="22" fill="#153D55"/><circle cx="610" cy="347" r="15" fill="#F2B84B"/><text x="639" y="356" fill="#F6FAFD" font-size="25" font-weight="650">FUEL</text></g>
+    <g><rect x="789" y="296" width="190" height="102" rx="22" fill="#153D55"/><circle cx="827" cy="347" r="15" fill="#8C78D5"/><text x="856" y="356" fill="#F6FAFD" font-size="25" font-weight="650">PILOT</text></g>
+    <g><rect x="1006" y="296" width="190" height="102" rx="22" fill="#153D55"/><circle cx="1044" cy="347" r="15" fill="#5FA7DD"/><text x="1073" y="356" fill="#F6FAFD" font-size="25" font-weight="650">DATA</text></g>
+    <g><rect x="1223" y="296" width="239" height="102" rx="22" fill="#153D55"/><circle cx="1261" cy="347" r="15" fill="#AAB7C2"/><text x="1290" y="356" fill="#F6FAFD" font-size="25" font-weight="650">PROFILE</text></g>
+  </g>
+
+  <text x="98" y="525" fill="#F6FAFD" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="25" font-weight="700">CORE WORKOUT LIFECYCLE</text>
+  <g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" filter="url(#shadow)">
+    <rect x="98" y="568" width="380" height="190" rx="30" fill="#12344B" stroke="#35C3B4" stroke-width="2"/>
+    <text x="140" y="626" fill="#35C3B4" font-size="20" font-weight="700">01 · PLAN</text>
+    <text x="140" y="674" fill="#F6FAFD" font-size="32" font-weight="700">Build a session</text>
+    <text x="140" y="716" fill="#A9C2CF" font-size="21">Structure exercises and intent</text>
+
+    <path d="M500 663 H548" stroke="#5FA7DD" stroke-width="7" stroke-linecap="round"/><path d="M540 650 L558 663 L540 676" fill="none" stroke="#5FA7DD" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="579" y="568" width="440" height="190" rx="30" fill="#12344B" stroke="#5FA7DD" stroke-width="2"/>
+    <text x="621" y="626" fill="#5FA7DD" font-size="20" font-weight="700">02 · EXECUTE</text>
+    <text x="621" y="674" fill="#F6FAFD" font-size="32" font-weight="700">Run the workout</text>
+    <text x="621" y="716" fill="#A9C2CF" font-size="18">Resume or deliberately replace active state</text>
+
+    <path d="M1041 663 H1089" stroke="#F2B84B" stroke-width="7" stroke-linecap="round"/><path d="M1081 650 L1099 663 L1081 676" fill="none" stroke="#F2B84B" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="1120" y="568" width="382" height="190" rx="30" fill="#12344B" stroke="#F2B84B" stroke-width="2"/>
+    <text x="1162" y="626" fill="#F2B84B" font-size="20" font-weight="700">03 · REVIEW</text>
+    <text x="1162" y="674" fill="#F6FAFD" font-size="32" font-weight="700">Read the record</text>
+    <text x="1162" y="716" fill="#A9C2CF" font-size="21">History and one-way reports</text>
+  </g>
+  <text x="96" y="848" fill="#7795A6" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="20">Public case-study diagram · private source and user data excluded</text>
+</svg>

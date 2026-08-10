@@ -1,0 +1,12 @@
+.DS_Store
+.idea/
+.vscode/
+.env
+.env.*
+*.pem
+*.key
+__pycache__/
+.pytest_cache/
+DerivedData/
+*.xcuserstate
+
