@@ -51,4 +51,3 @@ product copy, state design, persistence handling, and export language.
 
 For the precise evidence attached to each statement, see the
 [public feature matrix](public_feature_matrix.md).
-
