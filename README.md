@@ -1,8 +1,8 @@
 # SetFlow — Private iOS Product Case Study
 
-SetFlow is a private iOS strength-training product that brings workout planning,
-live session execution, wellness context, fuel planning, progress, and profile
-experiences into one system.
+SetFlow is a private iOS strength-training product in active development. It
+brings workout planning, live session execution, retained history, wellness
+context, fuel planning, progress, data, and profile experiences into one system.
 
 I designed and built SetFlow as an independent product project using Swift,
 SwiftUI, and SwiftData. This repository is a recruiter-facing case study—not the
@@ -22,6 +22,34 @@ harder to move from planning to execution and then understand what happened.
 SetFlow explores a unified product model: build the session, complete it, review
 the record, and keep adjacent context accessible without pretending that every
 signal is complete or clinically meaningful.
+
+## What I am building toward
+
+The product direction is a trustworthy training operating system: a user should
+be able to move from intent to execution to review while the product preserves
+continuity and explains what it knows, what it inferred, and what remains
+uncertain.
+
+The current direction explores:
+
+- contextual guidance that can draw from workout history, active-session state,
+  wellness, fuel, and progress without collapsing unlike signals into one
+  unsupported score;
+- explanations and confidence or limitation cues that keep recommendations
+  reviewable instead of presenting them as unquestionable answers;
+- user control over durable records, plan changes, and report generation; and
+- intelligence that assists training decisions without acting as medical advice
+  or silently rewriting the user's history.
+
+These are product principles and future direction—not claims of a shipped AI
+feature, model, agent, or autonomous coach. Implementation details, schedules,
+and unreleased architecture remain private.
+
+For a fast evaluation, start with the
+[90-second recruiter path](docs/recruiter_quick_start.md). The
+[product journey](docs/product_journey.md) expands the workflow, while the
+[expectations and evidence map](docs/product_expectations.md) distinguishes
+what has been demonstrated from future direction and explicit non-claims.
 
 ## Intended users
 
@@ -121,6 +149,36 @@ silently presenting temporary state as durable data.
 - accessible labels and explicit user-facing state boundaries
 - Git-based iterative product development
 
+## Applied-AI engineering relevance
+
+I use AI-assisted development as a governed engineering workflow across problem
+decomposition, implementation options, debugging, documentation, and audit
+support. Suggestions remain subject to human review, source inspection, builds,
+tests, runtime checks, and the evidence boundaries documented in this package.
+
+That workflow demonstrates how I collaborate with modern coding agents without
+treating generated output as proof. It is distinct from in-product AI: this case
+study does **not** claim that an LLM, retrieval system, fine-tuned model, or
+autonomous coaching agent is currently shipped inside SetFlow.
+
+## Product expectations at a glance
+
+SetFlow is presented as an in-development private product, so the public story
+uses four evidence states instead of treating every idea as shipped:
+
+- **Runtime demonstrated** — visible behavior represented by one of the five
+  reviewed simulator captures.
+- **Source/reachability evidenced** — behavior or routing checked in the private
+  product snapshot but not necessarily shown in the public captures.
+- **Future direction** — a problem area or product theme, never a current feature
+  promise.
+- **Not claimed** — production, release, health-outcome, synchronization, and
+  other statements this package explicitly does not establish.
+
+The full distinction is maintained in the
+[public feature matrix](docs/public_feature_matrix.md) and
+[product expectations](docs/product_expectations.md).
+
 ## What this case study proves
 
 - I can connect product decisions to working private-source evidence.
@@ -130,6 +188,8 @@ silently presenting temporary state as durable data.
   a production or release-readiness claim.
 - I can publish useful proof while keeping source and user-sensitive material
   private.
+- I can use AI-assisted engineering while preserving human accountability,
+  verification, and honest current-versus-future product boundaries.
 
 ## Current limitations
 
@@ -138,6 +198,8 @@ silently presenting temporary state as durable data.
 - Cross-device synchronization is not claimed.
 - The workout report cannot be restored into the app and is not a backup.
 - Wellness and fuel surfaces should not be interpreted as medical advice.
+- No deployed LLM, RAG system, fine-tuned model, or autonomous coaching agent is
+  claimed in the current product evidence.
 - Public screenshots are limited to the five privacy-reviewed simulator captures
   above and should not be interpreted as device, privacy, or release signoff.
 - Wellness and Data routes are source-verified but are not represented by public
@@ -151,11 +213,28 @@ README.md                         Product story and verified scope
 PRODUCT_DECISIONS.md              Decision-oriented case-study detail
 EVIDENCE_AND_LIMITATIONS.md       Evidence classes and claim boundaries
 CASE_STUDY_USAGE.md               Viewing and reuse terms
+FAQ.md                            Common questions and explicit non-claims
 docs/public_feature_matrix.md     Claim-by-claim public matrix
+docs/product_expectations.md      Current proof, future direction, non-claims
+docs/product_journey.md           User journey and trust boundaries
+docs/recruiter_quick_start.md     90-second evaluation path
 media/                            Conceptual, non-screenshot diagrams
 screenshots/                      Privacy-reviewed simulator product walkthrough
 tests/                            Safety and package-contract checks
 ```
+
+## Verify the exact package
+
+Run the safety suite without generating bytecode inside the candidate:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
+```
+
+The suite checks the exact 19-file contract, required recruiter content,
+relative links, conceptual SVG labels, screenshot names and PNG headers,
+private-path and secret patterns, and the absence of application source or
+binary files.
 
 ## Contact
 

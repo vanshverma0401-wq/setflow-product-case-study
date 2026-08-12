@@ -32,20 +32,34 @@ not use those checks to claim release readiness.
 - backup or restore capability
 - cross-device or cloud synchronization
 - medical or health-outcome claims
+- a deployed LLM, retrieval-augmented generation system, fine-tuned model, or
+  autonomous coaching agent
 - public source availability
 - proprietary architecture and service details
 - secrets, monetization details, and unreleased plans
 
 ## Screenshot boundary
 
-The included SVGs are conceptual product maps. They are not replicas of the
-private UI. No simulator screenshot is included because screenshots require a
-separate review for personal information, health information, account content,
-internal feature states, and unreleased design details.
+Five iOS Simulator screenshots are included after a separate privacy review.
+They show Home, Workout Hangar, Fuel, Pilot, and Profile in demo/test state and
+do not contain a real user's account, health, or workout data. They establish
+only the visible interface represented in those images. Wellness and Data are
+supported by source and route evidence but are not represented by public runtime
+captures in this revision.
+
+The two included SVGs are conceptual product maps. They are not replicas of the
+private UI and do not establish runtime behavior.
+
+## Development-process boundary
+
+AI assistance is used in the engineering workflow for problem decomposition,
+implementation options, debugging, documentation, and audit support. This is a
+process statement, not source, runtime, or release evidence. Suggestions remain
+subject to human review and proportional verification; generated output is not
+treated as proof.
 
 ## Evidence freshness
 
 The case study reflects one verified private-source snapshot. Product work can
 continue after that point, so future edits must recheck every feature statement
 against the then-current clean source before publication.
-
