@@ -1,53 +1,79 @@
 # Product journey
 
-## 1. Orient
+SetFlow connects planning, live workout state, and the resulting record. This
+journey explains the product behavior; the
+[feature matrix](public_feature_matrix.md) and
+[evidence ledger](../EVIDENCE_AND_LIMITATIONS.md) attach the relevant evidence
+and limitations. Selected visual states are documented in the
+[capture index](../screenshots/README.md).
 
-Home is the entry point for the current training context. The user can move from
-the shared product shell into workout planning while wellness, fuel, progress,
-history, and profile contexts remain separately accessible.
+## 1. Plan a session
 
-Product principle: adjacent information should be discoverable without implying
-that every domain is equally complete or can be reduced to one score.
+The user chooses exercises, muscle targets, equipment, goals, duration, and
+session structure. The entry flow checks for an existing active workout before
+starting another. Resolving that session is an explicit user choice.
 
-## 2. Plan
+The product aim is continuity: planning should agree with the workout that is
+actually active.
 
-The workout-building flow gives structure to the upcoming session. Before a new
-session begins, the product checks whether another active session already exists.
+## 2. Record the work
 
-Product principle: continuity and destructive transitions should be explicit.
-An existing session can be resumed or deliberately abandoned instead of being
-silently replaced.
+During a session, the user enters weight and repetitions and records completed
+sets. Supported decimal formats and the chosen weight unit affect how the input
+is interpreted. Invalid input should keep the set open with understandable
+feedback, rather than silently create an unintended record.
 
-## 3. Execute
+The [numeric-input case](../PRODUCT_DECISIONS.md#1-preserve-numeric-meaning-from-entry-to-history)
+explains validation and unit handling.
 
-The private product contains an active-workout experience. This case study keeps
-the implementation and internal route details private, so it presents the state
-decision rather than source code.
+## 3. Rest and return
 
-Product principle: live execution is stateful. Planning, starting, resuming, and
-ending should not be treated as unrelated screens.
+Rest periods belong to the active session. Locally retained state supports
+returning to the same workout, while elapsed-time handling accounts for time
+away from the app.
 
-## 4. Review and export
+Interrupted-session recovery has its own state choices and save-failure
+handling. Completing or discarding a recovered session should update the Home
+interface, and an ended session should remain ended. The
+[continuity case](../PRODUCT_DECISIONS.md#2-keep-workout-state-and-the-resume-interface-aligned)
+explains these rules and their proof limits.
 
-Completed eligible workout records can be prepared as CSV or JSON reports. The
-contract is versioned and explicitly marked `REPORT_ONLY` with
-`restorable=false`.
+## 4. Complete and review
 
-Product principle: a readable report is not a database archive. A user should
-not mistake export for backup, restore, or synchronization.
+Completion leads to feedback and a debrief, with the workout retained in History.
+Users can inspect exercises, sets, recorded volume, session feedback, and
+personal records. A past workout can be repeated through the cloning flow.
 
-## 5. Continue with context
+History is the point where the planned session and actual recorded work must
+remain distinguishable. The current case study does not imply that every
+completion, editing, template, or partial-workout scenario is implemented.
 
-Wellness, Fuel, Pilot, Data, and Profile keep complementary context within the
-same shell. Their presence supports a broader training journey, but this public
-revision does not claim equal completeness, clinical meaning, or public runtime
-proof for every surface.
+## 5. Generate a qualified report
 
-## Trust boundary across the journey
+Eligible completed workout records can be prepared as versioned CSV or JSON.
+The report describes its included and excluded scope and is marked
+`REPORT_ONLY` with `restorable=false`.
 
-If persistent storage becomes degraded, temporary or recovery state should be
-visible instead of silently appearing durable. This trust principle connects
-product copy, state design, persistence handling, and export language.
+A report is not a backup. It cannot restore the application database or
+synchronize another device. The
+[report-boundary diagram](../media/workout_report_boundary.svg) explains this
+contract.
 
-For the precise evidence attached to each statement, see the
-[public feature matrix](public_feature_matrix.md).
+## 6. Continue with fitness context
+
+The recovery view connects logged training history to rule-based muscle
+estimates and exposes No data where relevant evidence is absent. Readiness
+communicates signal coverage. Nutrition, hydration, progress, and preferences
+remain adjacent product areas with different maturity levels.
+
+Fitness context does not establish a medical measurement, clinical outcome, or
+trained prediction. The [missing-data case](../PRODUCT_DECISIONS.md#3-show-missing-evidence-alongside-calculated-guidance)
+explains the distinction between an absent input and a calculated estimate.
+
+## Trust across the journey
+
+Input errors, failed saves, incomplete data, and degraded persistence affect the
+user's understanding of the product. Those states belong in the interface and
+in the public evidence record. A screenshot demonstrates only the state shown;
+source inspection, reported test results, capture-specific execution, and device
+or distribution validation remain separate evidence layers.

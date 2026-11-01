@@ -1,37 +1,50 @@
 # Recruiter summary
 
-## Thirty-second version
+## Project description
 
-SetFlow is my private SwiftUI and SwiftData strength-training product in active
-development. I built a multi-surface iOS experience connecting workout planning
-and live execution with retained history, wellness, fuel, progress, data, and
-profile context. One engineering decision I highlight is the versioned
-workout-report contract: it generates CSV or JSON, filters ineligible sessions,
-and explicitly says the output is a non-restorable report rather than a backup.
+SetFlow is a private iOS strength-training application in active development.
+It connects session planning, weight and repetition entry, timed rest,
+completion feedback, and retained workout history. Adjacent recovery,
+nutrition, hydration, progress, and preference surfaces extend the training
+context with different maturity levels.
 
-The longer-term direction is a trustworthy training operating system with
-reviewable contextual guidance, clear uncertainty, durable-history protection,
-and user control. That is future direction, not a claim of shipped in-product AI.
+I direct the product and its user workflows, with substantial AI assistance for
+implementation, debugging, tests, and documentation. Most application code was
+generated with AI coding agents. The case study describes the resulting system;
+specific implementation contributions and technical understanding are best
+explored through concrete examples.
 
-## Skills demonstrated
+## Technical discussion areas
 
-- iOS product development with Swift, SwiftUI, and SwiftData
-- navigation and state transitions across a multi-surface product
-- workout planning and active-session continuity
-- persistence-failure and recovery-state thinking
-- versioned report/export contract design
-- evidence-grounded documentation and privacy-conscious public proof
-- AI-assisted engineering with human review and verification gates
+- **Data correctness:** supported decimal formats, invalid-input refusal, weight
+  conversion, and consistency between entered and retained values.
+- **Application lifecycle:** session transitions, rest restoration,
+  interrupted-workout recovery, and retryable persistence failures.
+- **Evidence-aware fitness context:** missing-data muscle states, readiness
+  signal coverage, and the boundary between a rule-based estimate and a
+  physiological measurement.
+- **Local data and portability:** SwiftData-backed records and versioned CSV/JSON
+  workout reports with explicit eligibility and non-restorable semantics.
+- **Verification practice:** source review, targeted regression guards, reported
+  local checks, visible simulator evidence, and the limits of each layer.
 
-## Applied-AI boundary
+## Evidence and current scope
 
-AI assistance supports development tasks such as problem decomposition,
-implementation options, debugging, documentation, and audits. Generated output
-is not treated as evidence. The current case study does not claim a deployed LLM,
-RAG system, fine-tuned model, or autonomous coaching agent inside SetFlow.
+The public package includes [product decisions](../PRODUCT_DECISIONS.md), a
+[dated evidence ledger](../EVIDENCE_AND_LIMITATIONS.md), and a
+[capture index](../screenshots/README.md) for the selected simulator states.
+Earlier development records report local builds and targeted tests. Reviewed
+GitHub jobs did not start; a job status alone is not executed verification.
 
-## Honest scope
+SetFlow is in development. This case study establishes no App Store release,
+production adoption, revenue, physical-device signoff, medical outcome, or
+trained-model personalization. Coding with AI is a development-process
+disclosure; it does not establish an in-product LLM or autonomous coach.
 
-SetFlow remains a private, in-development product. The case study does not claim
-App Store availability, production deployment, cross-device sync, backup/restore,
-or medical outcomes. Source code and proprietary architecture remain private.
+Workout reports are `REPORT_ONLY` with `restorable=false`: a report is not a
+backup, restore point, or synchronization mechanism. Application source,
+credentials, personal data, and private development records remain private.
+
+For a fast first pass, use the [90-second overview](recruiter_quick_start.md).
+
+[GitHub profile](https://github.com/vanshverma0401-wq)

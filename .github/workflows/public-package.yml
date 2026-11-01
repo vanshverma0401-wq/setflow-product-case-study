@@ -1,0 +1,23 @@
+name: Public case-study package
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  package-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Check out the case-study package
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check manifest, links, disclosures, and assets
+        run: python3 -m unittest discover -s tests -v
