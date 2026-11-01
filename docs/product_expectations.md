@@ -1,77 +1,59 @@
-# Product expectations and evidence map
+# Product expectations
 
-This document explains how to read the SetFlow case study. It is a product and
-engineering record for a private in-development application, not a release page.
+SetFlow is a private iPhone application in development. This case study focuses
+on its training workflow and selected engineering decisions, with evidence
+attached to the claims. It does not present every product surface as complete.
 
-## Runtime demonstrated
+## Current scope
 
-Five privacy-reviewed iOS Simulator captures show the visible Home, Workout
-Hangar, Fuel, Pilot, and Profile surfaces in demo/test state. They demonstrate
-only what appears in those images and the shared shell visible across them.
+The core journey connects workout planning, set logging, rest, completion,
+History, and qualified workout reports. Adjacent exercise, nutrition, hydration,
+and recovery contexts have different maturity levels. Recent work emphasizes
+numeric correctness, consistent units, workout continuity, and explicit missing
+data. The [feature matrix](public_feature_matrix.md) records the status and
+limitations of each area.
 
-They do not establish real-user deployment, physical-device behavior, complete
-accessibility, end-to-end privacy, distribution readiness, or every internal
-state of the product.
+The product's progression and recovery logic is rule-based. Missing data should
+remain visible, and a displayed readiness result should expose the available
+signal coverage. Those design choices do not establish medical meaning or a
+trained predictive model.
 
-## Source/reachability evidenced
+## What the visible proof means
 
-A reviewed private-source snapshot supports the following bounded statements:
+A dated synthetic simulator scene shows the interface and state observed in
+that scenario. It cannot establish every code path, physical-device behavior,
+complete accessibility, or release readiness. The final image dates and scope
+are recorded in the [screenshot record](../screenshots/README.md).
 
-- Swift, SwiftUI, and SwiftData are used in the application.
-- the primary shell routes to Home, Wellness, Fuel, Pilot, Data, and Profile;
-- Home reaches structured workout planning;
-- the private product contains an active-workout experience;
-- workout reports can be produced as versioned CSV and JSON;
-- the report contract is `REPORT_ONLY` and `restorable=false`;
-- degraded-storage and recovery states are modeled explicitly.
+Source review and prior test reports remain separate from fresh execution.
+The [evidence ledger](../EVIDENCE_AND_LIMITATIONS.md) identifies historical audit
+results, later PR-reported checks, and GitHub jobs that did not execute.
 
-Source and reachability evidence show that a path exists in the reviewed
-snapshot. They are not substitutes for fresh runtime, device, privacy, or
-release validation.
+## Current development process
+
+Most application code was generated with AI coding agents. Vansh directs the
+product and workflows while using substantial assistance for implementation,
+debugging, tests, and documentation. Generated code and test counts do not
+establish individual authorship, independent proficiency, or correctness by
+themselves.
+
+This development process is current. It is separate from future in-product AI
+ideas and must not be classified as a future capability.
 
 ## Future direction
 
-The public direction is intentionally thematic:
+The longer-term direction is to improve continuity, explain data quality, and
+explore contextual guidance that remains reviewable and under user control.
+Potential LLM or retrieval extensions would need their own implementation,
+evaluation, privacy boundaries, and current evidence before becoming product
+claims. These themes carry no delivery date or feature promise.
 
-- make the plan-to-session-to-review journey more coherent;
-- make data durability and report boundaries easier to understand;
-- improve how workout, wellness, fuel, progress, history, and profile context
-  complement one another without collapsing them into one unsupported score;
-- explore contextual intelligence that can surface reviewable guidance with
-  rationale, uncertainty, and user control while preserving durable history;
-- expand verification and presentation only when the supporting evidence is
-  current and safe to share.
+## Outcomes not established here
 
-These themes are not feature promises, schedules, or a disclosure of unreleased
-implementation plans.
+App Store availability, production deployment, release readiness, user adoption,
+revenue, medical outcomes, complete privacy/security or accessibility signoff,
+cloud backup/restore, and cross-device synchronization remain unclaimed. The
+workout report is explicitly non-restorable.
 
-## AI-assisted engineering process
-
-AI assistance is part of the product-development workflow, not a runtime feature
-claim. It supports problem decomposition, implementation options, debugging,
-documentation, and evidence review. Human inspection and proportional build,
-test, runtime, and source checks remain the decision gates.
-
-This process statement does not establish that AI-generated output is correct,
-that every suggestion is accepted, or that SetFlow currently ships an LLM or
-autonomous coach.
-
-## Not claimed
-
-This case study does not claim:
-
-- App Store availability, production deployment, or release readiness;
-- active users, adoption, retention, revenue, or commercial results;
-- physical-device, full accessibility, privacy, security, or performance
-  signoff;
-- cloud backup, restore, or cross-device synchronization;
-- medical advice, clinical interpretation, or health outcomes;
-- a deployed LLM, retrieval-augmented generation system, fine-tuned model, or
-  autonomous coaching agent;
-- public source availability or a complete architecture disclosure.
-
-## Expectation for future revisions
-
-Every revision must preserve the distinction above. If a current review cannot
-re-establish a statement, the statement should be softened or removed rather
-than carried forward from an older screenshot or plan.
+Each future revision should preserve these distinctions and refresh the
+relevant evidence rather than carry forward an unsupported statement.

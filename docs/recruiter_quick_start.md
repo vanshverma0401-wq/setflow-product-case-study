@@ -1,53 +1,50 @@
 # SetFlow in 90 seconds
 
-## What it is
+**Product:** a private, in-development native iPhone strength-training
+application connecting workout planning, set logging, rest, completion, and
+retained training history.
 
-SetFlow is my private in-development iOS strength-training product. It connects
-workout planning and live-session continuity with wellness, fuel, progress,
-history, data, and profile context in one product shell.
+**Role:** independently directed product development with substantial
+AI-assisted implementation. Vansh guides the product direction and user
+workflows; AI coding agents generated most application code and also assist
+with debugging, tests, and documentation.
 
-It is being built toward a trustworthy training operating system with reviewable
-contextual guidance, explicit uncertainty, durable-history protection, and user
-control. That direction is not presented as a shipped AI feature.
+## Start with three concrete problems
 
-## What I owned
+| Problem | Implemented approach | Discussion value |
+|---|---|---|
+| Weight input and units can change the meaning of a record | Shared numeric parsing, validation before commit, and conversion at input/display boundaries | Data correctness across a user-facing workflow |
+| Interrupted workouts can leave stale resume actions | Explicit session transitions, recovery choices, and aligned Home state | Persistence, lifecycle, and failure handling |
+| Missing history can look like confident guidance | No-data muscle states and readiness signal coverage | Explainable rule-based behavior and honest uncertainty |
 
-I worked independently across product framing, SwiftUI interaction and
-navigation, workout state, SwiftData persistence decisions, report boundaries,
-failure-state communication, validation, AI-assisted development under human
-review, and the privacy-conscious case study.
+Read the [engineering cases](../PRODUCT_DECISIONS.md) for decisions, regression
+guards, and remaining limits.
 
-## Two decisions worth discussing
+## Inspect the product and proof
 
-1. **Active-session continuity:** the entry flow checks for an existing session
-   and requires the user to resume it or deliberately abandon it before starting
-   another.
-2. **Reports are not backups:** CSV and JSON workout reports are versioned,
-   filtered for eligibility, and explicitly labeled `REPORT_ONLY` and
-   non-restorable.
+- [Main case study](../README.md): the product, main journey, and selected capabilities.
+- [Capture index](../screenshots/README.md): screenshot dates, synthetic scenarios,
+  and the exact visible states selected for review.
+- [Evidence ledger](../EVIDENCE_AND_LIMITATIONS.md): source inspection, reported
+  development checks, capture-specific execution, and current limitations.
+- [Reusable project summary](recruiter_summary.md): a compact description for a
+  longer conversation.
 
-## Visual proof
+Recent development records report local builds and targeted tests. The reviewed
+GitHub jobs did not start, so their status does not establish executed CI checks.
+The public-package Python suite checks documentation and assets, not the iOS app.
 
-Five privacy-reviewed simulator captures in the [main case study](../README.md)
-show Home, Workout Hangar, Fuel, Pilot, and Profile in demo/test state. Two
-conceptual diagrams explain the product system and export boundary without
-exposing source or proprietary architecture.
+## Scope
 
-## Honest boundary
+SetFlow uses Swift, SwiftUI, SwiftData, SceneKit, and HealthKit-facing data
+handling. Its fitness estimates are rule-based. No App Store release,
+production deployment, trained-model personalization, clinical outcome,
+cross-device synchronization, or backup/restore is established by this package.
+Workout reports are versioned, `REPORT_ONLY`, and non-restorable.
 
-The package does not claim App Store availability, production deployment,
-release readiness, cross-device sync, backup/restore, adoption, revenue, or
-health outcomes. The full split between demonstrated behavior, private-source
-evidence, future direction, and non-claims is in
-[product expectations](product_expectations.md).
+The useful interview conversation is a specific user flow, a decision, its
+implementation evidence, the owner's actual contribution, and what remains
+unverified. Application source and private development records are excluded from
+this public repository.
 
-## Good interview follow-ups
-
-- How should a product handle an already-active workout?
-- What makes a data report different from a restorable archive?
-- How do degraded persistence states affect user trust?
-- How can private-source work still be evaluated responsibly?
-- How should coding-agent suggestions be verified before they become durable
-  product decisions?
-- What evidence would be required before describing contextual guidance as a
-  shipped AI feature?
+[GitHub profile](https://github.com/vanshverma0401-wq)

@@ -1,242 +1,190 @@
-# SetFlow — Private iOS Product Case Study
+# SetFlow — iOS Strength-Training Product Case Study
 
-SetFlow is a private iOS strength-training product in active development. It
-brings workout planning, live session execution, retained history, wellness
-context, fuel planning, progress, data, and profile experiences into one system.
+SetFlow connects workout planning, set logging, rest periods, training history,
+and recovery context in a native iPhone application. The project explores a
+practical problem: keeping a training session and its saved record coherent as
+the user plans, trains, leaves the app, returns, and reviews progress.
 
-I designed and built SetFlow as an independent product project using Swift,
-SwiftUI, and SwiftData. This repository is a recruiter-facing case study—not the
-application source, an App Store listing, or a claim of production readiness.
+**Status:** private in-development product; not an App Store release. Source
+review: October 31, 2026; local package updated November 1, 2026.
+The latest implementation reviewed includes changes
+merged through October 28, 2026, US Central time. Screenshot dates, synthetic
+scenarios, and the behavior visible in each image are recorded in the
+[capture index](screenshots/README.md).
 
-> **Public boundary:** the source code, proprietary implementation details,
-> credentials, personal data, monetization work, and unreleased plans remain
-> private. The five product images are privacy-reviewed iOS Simulator captures;
-> the two diagrams are conceptual product maps, not app screenshots.
+Start with the [90-second overview](docs/recruiter_quick_start.md), then explore
+the [product decisions](PRODUCT_DECISIONS.md) and
+[evidence and limitations](EVIDENCE_AND_LIMITATIONS.md).
 
-## The product problem
+## My role and development approach
 
-Strength-training tools often split the experience across disconnected workout,
-recovery, nutrition, progress, and profile surfaces. That fragmentation makes it
-harder to move from planning to execution and then understand what happened.
+SetFlow is my independently directed product project. I guide the product
+direction and user workflows, using AI coding agents for substantial
+implementation, debugging, tests, and documentation. Most application code was
+generated with AI assistance.
 
-SetFlow explores a unified product model: build the session, complete it, review
-the record, and keep adjacent context accessible without pretending that every
-signal is complete or clinically meaningful.
+The walkthrough connects product decisions to implementation evidence and
+observed behavior. Detailed contribution and verification boundaries are in the
+[evidence ledger](EVIDENCE_AND_LIMITATIONS.md).
 
-## What I am building toward
+## The main user journey
 
-The product direction is a trustworthy training operating system: a user should
-be able to move from intent to execution to review while the product preserves
-continuity and explains what it knows, what it inferred, and what remains
-uncertain.
+1. **Plan:** choose exercises, muscle targets, equipment, goals, and session
+   structure. An existing active workout must be resolved before a new one starts.
+2. **Train:** enter weight and repetitions, record sets, and take timed rests.
+3. **Continue:** return to an active session with locally retained workout state.
+4. **Review:** inspect completed sets, volume, feedback, and personal records in
+   History; repeat an earlier workout through the cloning flow.
+5. **Use the record:** generate a qualified CSV or JSON workout report for review.
 
-The current direction explores:
-
-- contextual guidance that can draw from workout history, active-session state,
-  wellness, fuel, and progress without collapsing unlike signals into one
-  unsupported score;
-- explanations and confidence or limitation cues that keep recommendations
-  reviewable instead of presenting them as unquestionable answers;
-- user control over durable records, plan changes, and report generation; and
-- intelligence that assists training decisions without acting as medical advice
-  or silently rewriting the user's history.
-
-These are product principles and future direction—not claims of a shipped AI
-feature, model, agent, or autonomous coach. Implementation details, schedules,
-and unreleased architecture remain private.
-
-For a fast evaluation, start with the
-[90-second recruiter path](docs/recruiter_quick_start.md). The
-[product journey](docs/product_journey.md) expands the workflow, while the
-[expectations and evidence map](docs/product_expectations.md) distinguishes
-what has been demonstrated from future direction and explicit non-claims.
-
-## Intended users
-
-- strength-training users who want a structured session workflow
-- users who prefer workout, wellness, fuel, and progress context in one product
-- athletes who value transparent limits around saved data and exported reports
-
-## My role
-
-Independent product builder across:
-
-- product framing and feature prioritization
-- SwiftUI navigation and interaction design
-- workout planning and active-session workflows
-- SwiftData-backed persistence work
-- failure-state and portability decisions
-- validation, documentation, and privacy-conscious public packaging
-
-## Verified product surface
-
-The current private source routes to six top-level experiences:
-
-1. **Home** — entry point for the current training context and workout flow
-2. **Wellness** — recovery-oriented context and history surfaces
-3. **Fuel** — nutrition and refuel-oriented context
-4. **Pilot** — progress and gamification experiences
-5. **Data** — athlete activity and history views
-6. **Profile** — preferences and user-controlled context
+Fresh focused simulator checks demonstrate logging, rest restoration after
+relaunch, completion, retained History, and report preview using synthetic data.
+The builder and recovery examples use separate scenarios. The
+[feature matrix](docs/public_feature_matrix.md) distinguishes these checks from
+source inspection, earlier reported results, and remaining gaps.
 
 ## Product walkthrough
 
-These images were captured from a dedicated iOS Simulator UI-test run on
-August 9, 2026 and reviewed before publication. They show the visible product
-shell in demo/test state; they do not contain a real user's account, health, or
-workout data. A simulator capture establishes the visible interface shown here,
-not App Store availability, production deployment, or release readiness.
+The [capture index](screenshots/README.md) records the selected native iOS
+Simulator images, their capture dates, synthetic-data setup, and what each image
+establishes. Screenshots demonstrate the visible states shown; they do not
+establish physical-device behavior or release readiness.
 
-| Home | Workout Hangar | Fuel |
-|---|---|---|
-| ![SetFlow Home screen in a privacy-reviewed simulator state](screenshots/01-home.png) | ![SetFlow workout Hangar in a privacy-reviewed simulator state](screenshots/02-hangar.png) | ![SetFlow Fuel screen in a privacy-reviewed simulator state](screenshots/03-fuel.png) |
+The core recording sequence uses one synthetic three-set fixture. The builder,
+recovery, and readiness images use separate scenarios described in the index.
 
-| Pilot | Profile |
+| Active logging | Rest retained after relaunch |
 |---|---|
-| ![SetFlow Pilot screen in a privacy-reviewed simulator state](screenshots/04-pilot.png) | ![SetFlow Profile screen in a privacy-reviewed simulator state](screenshots/06-profile.png) |
+| ![Active set with 62.5 kilograms and eight repetitions](screenshots/02-active-workout.png) | ![Rest countdown and next-set context after app relaunch](screenshots/03-rest-resumed.png) |
 
-The screenshot set demonstrates the shared navigation system and distinct
-workout, nutrition, progress, and preference contexts. The
-conceptual map below explains how those visible surfaces relate without exposing
-private implementation structure.
+| Completed History after relaunch | Qualified report preview |
+|---|---|
+| ![Three retained sets of 62.5 kilograms by eight repetitions](screenshots/04-workout-history.png) | ![One included workout and the non-restorable report qualification](screenshots/05-report-preview.png) |
 
-Home connects to a structured session builder and an active-workout runtime.
-Completed workout records can be prepared as CSV or JSON reports through an
-explicitly one-way export contract.
+<details>
+<summary>Planning, recovery, and missing-data examples</summary>
+
+| Separate planning preview | Recovery thermal view |
+|---|---|
+| ![Workout Builder with a separate six-exercise eighteen-set preview](screenshots/01-workout-builder.png) | ![Derived body model with synthetic-history recovery colors](screenshots/06-recovery-body-map.png) |
+
+| No-data muscle detail | Synthetic readiness coverage |
+|---|---|
+| ![Forearms detail with no estimate and zero logged sets](screenshots/07-missing-data.png) | ![Rule-based readiness example based on four of eleven synthetic signals](screenshots/08-readiness-coverage.png) |
+
+[Invalid-weight feedback with the set still uncompleted](screenshots/09-input-validation.png).
+Body-model source and license details are in [asset attribution](ASSET_ATTRIBUTION.md).
+
+</details>
+
+## Selected capabilities
+
+| Capability | What the system does | Why it matters |
+|---|---|---|
+| Stateful workout lifecycle | Connects planning, set logging, rest, completion, and retained History | Preserves continuity across a real sequence of user actions |
+| Locale-aware numeric input | Accepts supported decimal formats and rejects invalid values before committing a set | Prevents input interpretation from silently changing the saved workout |
+| Weight-unit handling | Converts at input and display boundaries while preserving a canonical stored unit | Keeps settings, workout records, and displayed volume consistent |
+| Session recovery | Models interrupted-session choices, save failures, retry, and valid status transitions | Protects the meaning of an active or completed workout |
+| Training progression | Uses rule-based repetition/load progression and personal-record feedback | Connects earlier recorded work to the next training session |
+| Qualified workout reports | Applies eligibility and exclusion rules before generating versioned CSV/JSON | Makes the scope and provenance of a report explicit |
+| Local nutrition and hydration | Includes manual records, a journal, and hydration request identities that guard against duplicates | Provides adjacent context with explicit data-quality boundaries |
+| Recovery visualization | Includes a mapped 3D body surface, missing-data states, and readiness signal coverage | Makes available evidence and uncertainty visible |
+
+Capabilities have different maturity levels. The table describes implemented
+behavior, supported by targeted source review and dated verification records;
+it does not claim that every flow is complete or independently re-tested for
+this case-study revision.
+
+## Three engineering problems worth discussing
+
+**A valid-looking number can still be interpreted incorrectly.** Recent work
+separates numeric parsing from UI state, handles supported locale separators,
+and blocks invalid set commits. Unit conversion is applied consistently at
+system boundaries. The useful discussion is how an entered value becomes a
+saved record and how regressions are detected.
+
+**An interrupted workout needs a deliberate state transition.** Recovery work
+addresses stale resume presentation, end-time handling, and changes to already
+ended sessions. Targeted tests cover recovery choices and persistence failures.
+The useful discussion is the relationship between durable records and the UI
+that offers to resume them.
+
+**Missing evidence should remain visible.** Recovery maps distinguish absent
+training evidence from a calculated fitness estimate, while readiness presents
+how many signals are available. These are rule-based fitness features; the case study claims no
+clinical validation or trained-model personalization.
+
+The [decision record](PRODUCT_DECISIONS.md) expands these cases with their
+verification scope and limitations.
+
+## Conceptual product maps
+
+The two diagrams are conceptual product maps, not app screenshots. They explain
+the workflow and report boundary without publishing application source.
 
 ![Conceptual map of the SetFlow product system](media/product_system_map.svg)
 
-## Selected product and engineering decisions
-
-### Keep planning and execution connected
-
-The workout entry flow checks for an existing active session before starting a
-new one. Users can resume the existing session or deliberately abandon it before
-creating another. This makes session continuity an explicit product decision
-instead of an accidental state transition.
-
-### Separate adjacent contexts without hiding them
-
-Workout, wellness, fuel, progress, history, and profile surfaces remain distinct
-top-level areas. The goal is a coherent product shell without collapsing unlike
-data or implying that every signal has the same quality.
-
-### Make portability language precise
-
-SetFlow can generate versioned CSV and JSON workout reports after evaluating
-which sessions are eligible. The artifact is intentionally marked
-`REPORT_ONLY` and `restorable=false`.
-
-That means the export is useful for review and portability, but it is **not** a
-backup, restore point, device-sync mechanism, or complete database archive.
+Workout exports carry a versioned `REPORT_ONLY` contract and
+`restorable=false`. A report is not a backup and cannot restore the application
+database.
 
 ![Conceptual map of the workout report boundary](media/workout_report_boundary.svg)
 
-### Design failure states around user trust
+## Technology and verification
 
-The private app source contains explicit persistent-store recovery states and an
-in-memory fallback warning. The public lesson is broader than the implementation:
-when persistence is degraded, the product should state that clearly and avoid
-silently presenting temporary state as durable data.
+The application uses Swift, SwiftUI, SwiftData, SceneKit, and HealthKit-facing
+data handling. The project includes schema evolution, isolated test stores,
+targeted unit/UI tests, credential checks, privacy-manifest checks, and static
+release-readiness tooling.
 
-## Technology demonstrated
+Verification is reported by layer: implementation, author-reported local checks,
+GitHub checks that actually executed, visible simulator behavior, and device or
+distribution evidence. Recent PRs report local builds and targeted tests. The
+reviewed GitHub jobs did not start, so those statuses do not establish executed
+CI checks. Capture-specific build and runtime evidence is documented separately
+from those earlier reports in the [evidence ledger](EVIDENCE_AND_LIMITATIONS.md).
 
-- Swift and SwiftUI
-- SwiftData persistence
-- stateful workout planning and execution flows
-- versioned CSV/JSON report generation
-- input eligibility and exclusion handling
-- accessible labels and explicit user-facing state boundaries
-- Git-based iterative product development
+See [evidence and limitations](EVIDENCE_AND_LIMITATIONS.md) for dated results and
+their exclusions. The Python tests in this repository check the public package,
+links, file boundaries, and document contracts; they do not test the iOS app.
 
-## Applied-AI engineering relevance
+## Current limits
 
-I use AI-assisted development as a governed engineering workflow across problem
-decomposition, implementation options, debugging, documentation, and audit
-support. Suggestions remain subject to human review, source inspection, builds,
-tests, runtime checks, and the evidence boundaries documented in this package.
+- SetFlow remains in development; production deployment and release readiness
+  are not established.
+- Cross-device synchronization is not claimed. Workout reports do not provide
+  backup or restore.
+- Several nutrition, settings, widget, accessibility, and integration paths
+  remain incomplete or need additional verification.
+- Health and recovery context is fitness-oriented. No medical advice,
+  health-outcome improvement, or clinically validated prediction is claimed.
+- AI-assisted development does not imply a deployed LLM, RAG system, fine-tuned
+  model, or autonomous coach inside the application.
+- The body-model asset has third-party and derivative provenance. Any new
+  showcase of that asset must carry the applicable attribution and notices.
+- No real-user adoption, revenue, physical-device signoff, or complete security
+  certification is claimed.
 
-That workflow demonstrates how I collaborate with modern coding agents without
-treating generated output as proof. It is distinct from in-product AI: this case
-study does **not** claim that an LLM, retrieval system, fine-tuned model, or
-autonomous coaching agent is currently shipped inside SetFlow.
+The public repository contains a source-free case study. Application source,
+credentials, user data, and private development records remain private.
 
-## Product expectations at a glance
+## Explore the case study
 
-SetFlow is presented as an in-development private product, so the public story
-uses four evidence states instead of treating every idea as shipped:
+- [90-second overview](docs/recruiter_quick_start.md)
+- [Recruiter summary](docs/recruiter_summary.md)
+- [Product journey](docs/product_journey.md)
+- [Screenshot dates and scenarios](screenshots/README.md)
+- [Product and engineering decisions](PRODUCT_DECISIONS.md)
+- [Feature and evidence matrix](docs/public_feature_matrix.md)
+- [Evidence and limitations](EVIDENCE_AND_LIMITATIONS.md)
+- [Expectations and future direction](docs/product_expectations.md)
+- [FAQ](FAQ.md)
+- [Viewing and reuse terms](CASE_STUDY_USAGE.md)
 
-- **Runtime demonstrated** — visible behavior represented by one of the five
-  reviewed simulator captures.
-- **Source/reachability evidenced** — behavior or routing checked in the private
-  product snapshot but not necessarily shown in the public captures.
-- **Future direction** — a problem area or product theme, never a current feature
-  promise.
-- **Not claimed** — production, release, health-outcome, synchronization, and
-  other statements this package explicitly does not establish.
-
-The full distinction is maintained in the
-[public feature matrix](docs/public_feature_matrix.md) and
-[product expectations](docs/product_expectations.md).
-
-## What this case study proves
-
-- I can connect product decisions to working private-source evidence.
-- I can reason about navigation, state transitions, persistence, and export
-  contracts across a multi-surface iOS product.
-- I can communicate limitations without inflating an in-development product into
-  a production or release-readiness claim.
-- I can publish useful proof while keeping source and user-sensitive material
-  private.
-- I can use AI-assisted engineering while preserving human accountability,
-  verification, and honest current-versus-future product boundaries.
-
-## Current limitations
-
-- SetFlow is a private in-development product, not an App Store release.
-- The case study does not establish production deployment or release readiness.
-- Cross-device synchronization is not claimed.
-- The workout report cannot be restored into the app and is not a backup.
-- Wellness and fuel surfaces should not be interpreted as medical advice.
-- No deployed LLM, RAG system, fine-tuned model, or autonomous coaching agent is
-  claimed in the current product evidence.
-- Public screenshots are limited to the five privacy-reviewed simulator captures
-  above and should not be interpreted as device, privacy, or release signoff.
-- Wellness and Data routes are source-verified but are not represented by public
-  runtime screenshots in this revision.
-- The public package intentionally omits source code and proprietary architecture.
-
-## Repository map
-
-```text
-README.md                         Product story and verified scope
-PRODUCT_DECISIONS.md              Decision-oriented case-study detail
-EVIDENCE_AND_LIMITATIONS.md       Evidence classes and claim boundaries
-CASE_STUDY_USAGE.md               Viewing and reuse terms
-FAQ.md                            Common questions and explicit non-claims
-docs/public_feature_matrix.md     Claim-by-claim public matrix
-docs/product_expectations.md      Current proof, future direction, non-claims
-docs/product_journey.md           User journey and trust boundaries
-docs/recruiter_quick_start.md     90-second evaluation path
-media/                            Conceptual, non-screenshot diagrams
-screenshots/                      Privacy-reviewed simulator product walkthrough
-tests/                            Safety and package-contract checks
-```
-
-## Verify the exact package
-
-Run the safety suite without generating bytecode inside the candidate:
+For the public-package checks:
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
 ```
 
-The suite checks the exact 19-file contract, required recruiter content,
-relative links, conceptual SVG labels, screenshot names and PNG headers,
-private-path and secret patterns, and the absence of application source or
-binary files.
-
-## Contact
-
-This case study is intended to support conversations about iOS engineering,
-product thinking, data trust, and privacy-conscious software development.
+[GitHub profile](https://github.com/vanshverma0401-wq)
