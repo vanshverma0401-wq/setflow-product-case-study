@@ -1,5 +1,9 @@
 # SetFlow in 90 seconds
 
+### [Explore the SetFlow website review →](https://setflow-review-nov03.vanshverma0401.chatgpt.site)
+
+*Website review copy. The iPhone app is in development; registration is simulated and provides no beta access.*
+
 **Product:** a private, in-development native iPhone strength-training
 application connecting workout planning, set logging, rest, completion, and
 retained training history.
