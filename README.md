@@ -16,6 +16,12 @@ Start with the [90-second overview](docs/recruiter_quick_start.md), then explore
 the [product decisions](PRODUCT_DECISIONS.md) and
 [evidence and limitations](EVIDENCE_AND_LIMITATIONS.md).
 
+## Interactive website review
+
+[Open the temporary website review](https://setflow-review-nov03.vanshverma0401.chatgpt.site). It presents native screenshots, original recordings and searchable feature explanations in an authored 3D website. The website is separate from the native iPhone application. It is shared for feedback, and its registration is a noncollecting simulation; no app download or beta admission is available.
+
+The permanent GitHub case study and its evidence notes remain the primary reference. The review link may be withdrawn after feedback.
+
 ## My role and development approach
 
 SetFlow is my independently directed product project. I guide the product
