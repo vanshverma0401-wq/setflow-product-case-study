@@ -1,5 +1,9 @@
 # SetFlow — iOS Strength-Training Product Case Study
 
+### [Explore the SetFlow website review →](https://setflow-review-nov03.vanshverma0401.chatgpt.site)
+
+*Website review copy. The iPhone app is in development; registration is simulated and provides no beta access.*
+
 SetFlow connects workout planning, set logging, rest periods, training history,
 and recovery context in a native iPhone application. The project explores a
 practical problem: keeping a training session and its saved record coherent as
