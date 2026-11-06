@@ -1,6 +1,6 @@
 # Evidence and limitations
 
-Source review date: **October 31, 2026**. Local package review: **November 1, 2026**.
+Source review date: **October 31, 2026**. Original local package review: **November 1, 2026**. Public presentation review: **November 6, 2026**.
 The source review covers selected
 implementation and test definitions in the application changes merged through
 October 28, 2026, US Central time. The application source and internal execution
@@ -34,11 +34,16 @@ written or that every technical skill has been demonstrated by the owner.
 
 ### Fresh capture evidence
 
-Nine fresh, visually reviewed native PNGs were captured on October 31–November 1,
+The original pass captured nine fresh, visually reviewed native PNGs on October 31–November 1,
 2026, in America/Chicago time, using a dedicated iPhone 17 simulator on iOS 27.0.
 The final Debug build succeeded with local ad-hoc simulator signing and the
 credential gate enabled. The generated simulator entitlement payload included
 HealthKit and an application identity. No application source change was needed.
+
+That historical pass remains a nine-image record. The November 6 gallery retains
+seven of those images. The earlier body-model rendering and its associated
+Forearms detail are omitted while their wider-distribution scope is reviewed. The original observed checks below are retained as dated history;
+this presentation revision does not report a new native execution.
 
 | Focused native check | Observed result | Limit |
 |---|---|---|

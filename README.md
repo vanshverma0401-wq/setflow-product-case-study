@@ -2,6 +2,8 @@
 
 ### [Explore the SetFlow website review →](https://setflow-review-nov03.vanshverma0401.chatgpt.site)
 
+### [Watch the 1:34 product walkthrough →](https://setflow-review-nov03.vanshverma0401.chatgpt.site/watch.html#momentum)
+
 *Website review copy. The iPhone app is in development; registration is simulated and provides no beta access.*
 
 SetFlow connects workout planning, set logging, rest periods, training history,
@@ -10,7 +12,8 @@ practical problem: keeping a training session and its saved record coherent as
 the user plans, trains, leaves the app, returns, and reviews progress.
 
 **Status:** private in-development product; not an App Store release. Source
-review: October 31, 2026; local package updated November 1, 2026.
+review: October 31, 2026; public presentation updated November 6, 2026.
+The earlier native capture pass remains dated October 31–November 1, 2026.
 The latest implementation reviewed includes changes
 merged through October 28, 2026, US Central time. Screenshot dates, synthetic
 scenarios, and the behavior visible in each image are recorded in the
@@ -22,7 +25,9 @@ the [product decisions](PRODUCT_DECISIONS.md) and
 
 ## Interactive website review
 
-[Open the temporary website review](https://setflow-review-nov03.vanshverma0401.chatgpt.site). It presents native screenshots, original recordings and searchable feature explanations in an authored 3D website. The website is separate from the native iPhone application. It is shared for feedback, and its registration is a noncollecting simulation; no app download or beta admission is available.
+[Open the temporary website review](https://setflow-review-nov03.vanshverma0401.chatgpt.site). It presents a 94-second product walkthrough, native screenshots, original workout recordings and searchable feature explanations in an authored 3D website. The website is separate from the native iPhone application. It is shared for feedback, and its registration is a noncollecting simulation; no app download or beta admission is available.
+
+The [94-second walkthrough](https://setflow-review-nov03.vanshverma0401.chatgpt.site/watch.html#momentum) follows 15 features using seven recorded scenes and eight still interface examples captured November 1, 2026. The examples use fictional data and come from separate scenarios, rather than one continuous workout. Full-phone context alternates with focused explanations; the original score is optional and a descriptive transcript is available.
 
 The permanent GitHub case study and its evidence notes remain the primary reference. The review link may be withdrawn after feedback.
 
@@ -72,18 +77,19 @@ recovery, and readiness images use separate scenarios described in the index.
 | ![Three retained sets of 62.5 kilograms by eight repetitions](screenshots/04-workout-history.png) | ![One included workout and the non-restorable report qualification](screenshots/05-report-preview.png) |
 
 <details>
-<summary>Planning, recovery, and missing-data examples</summary>
+<summary>Planning, missing-history, and readiness examples</summary>
 
-| Separate planning preview | Recovery thermal view |
+| Separate planning preview | Readiness signal coverage |
 |---|---|
-| ![Workout Builder with a separate six-exercise eighteen-set preview](screenshots/01-workout-builder.png) | ![Derived body model with synthetic-history recovery colors](screenshots/06-recovery-body-map.png) |
-
-| No-data muscle detail | Synthetic readiness coverage |
-|---|---|
-| ![Forearms detail with no estimate and zero logged sets](screenshots/07-missing-data.png) | ![Rule-based readiness example based on four of eleven synthetic signals](screenshots/08-readiness-coverage.png) |
+| ![Workout Builder with a separate six-exercise eighteen-set preview](screenshots/01-workout-builder.png) | ![Rule-based readiness interface showing four of eleven simulated signals](screenshots/08-readiness-coverage.png) |
 
 [Invalid-weight feedback with the set still uncompleted](screenshots/09-input-validation.png).
-Body-model source and license details are in [asset attribution](ASSET_ATTRIBUTION.md).
+
+The current gallery contains seven native PNGs retained from the original
+nine-image capture pass.
+The earlier body-model rendering and its associated older detail image are
+omitted from this revision while their wider-distribution scope is reviewed.
+Historical source and license notes remain in [asset attribution](ASSET_ATTRIBUTION.md).
 
 </details>
 
@@ -150,7 +156,7 @@ release-readiness tooling.
 Verification is reported by layer: implementation, author-reported local checks,
 GitHub checks that actually executed, visible simulator behavior, and device or
 distribution evidence. Recent PRs report local builds and targeted tests. The
-reviewed GitHub jobs did not start, so those statuses do not establish executed
+previously reviewed private application jobs did not start, so those statuses do not establish executed
 CI checks. Capture-specific build and runtime evidence is documented separately
 from those earlier reports in the [evidence ledger](EVIDENCE_AND_LIMITATIONS.md).
 
@@ -189,6 +195,7 @@ credentials, user data, and private development records remain private.
 - [Evidence and limitations](EVIDENCE_AND_LIMITATIONS.md)
 - [Expectations and future direction](docs/product_expectations.md)
 - [FAQ](FAQ.md)
+- [Public sharing scope](PUBLIC_SHARING_SCOPE.md)
 - [Viewing and reuse terms](CASE_STUDY_USAGE.md)
 
 For the public-package checks:

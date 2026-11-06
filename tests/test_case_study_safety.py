@@ -20,6 +20,42 @@ ROOT = Path(__file__).resolve().parents[1]
 MAX_FILE_BYTES = 5 * 1024 * 1024
 IGNORED_PARTS = {".git", "__pycache__", ".pytest_cache"}
 TEXT_SUFFIXES = {".md", ".json", ".py", ".yml", ".yaml", ".svg"}
+PUBLIC_GITHUB_REPOSITORIES = {
+    ("vanshverma0401-wq", "setflow-product-case-study"),
+    ("vanshverma0401-wq", "vanshverma0401-wq"),
+    ("z-anatomy", "models-of-human-anatomy"),
+    ("makehumancommunity", "makehuman"),
+}
+PUBLIC_GITHUB_PROFILES = {"vanshverma0401-wq"}
+# Retired gallery bytes must not return under a different screenshot filename.
+RETIRED_IMAGE_SHA256 = {
+    "3eef5c9399b1011e2d019d16df3a046590d9009112082edc5c3273fc5453f637",
+    "ae9890c41b047ec4cd85c290f2646a20497b8eaa183f87f3b760b2d3fca96d60",
+}
+
+
+def approved_github_destination(value: str) -> bool:
+    """Use explicit public destinations without naming a private repository."""
+    parsed = urlsplit(value)
+    if parsed.scheme != "https" or parsed.username is not None or parsed.password is not None:
+        return False
+    try:
+        if parsed.port not in {None, 443}:
+            return False
+    except ValueError:
+        return False
+    host = (parsed.hostname or "").lower()
+    if host not in {"github.com", "raw.githubusercontent.com", "api.github.com"}:
+        return False
+    parts = unquote(parsed.path).strip("/").split("/")
+    if any(part in {".", ".."} or "\\" in part or "\x00" in part for part in parts):
+        return False
+    if host == "api.github.com":
+        if not parts or parts.pop(0) != "repos":
+            return False
+    if host == "github.com" and len(parts) == 1:
+        return parts[0].lower() in PUBLIC_GITHUB_PROFILES
+    return len(parts) >= 2 and tuple(p.lower() for p in parts[:2]) in PUBLIC_GITHUB_REPOSITORIES
 
 
 def public_paths() -> list[Path]:
@@ -168,10 +204,6 @@ class CaseStudySafetyTests(unittest.TestCase):
             "private_path": re.compile(r"/(?:Users|Volumes|home)/[^\s\x60]+"),
             "private_revision": re.compile(r"\b[0-9a-f]{40}\b", re.IGNORECASE),
             "internal_branch": re.compile(r"\bcodex/[A-Za-z0-9._/-]+"),
-            "private_repository": re.compile(
-                r"(?:github\.com|raw\.githubusercontent\.com|api\.github\.com/repos)"
-                r"/vanshverma0401-wq/SetFlow(?:[/#?\s\"')]|$)", re.IGNORECASE
-            ),
             "access_key": re.compile(r"\b(?:AKIA|ASIA)[A-Z0-9]{16}\b"),
             "provider_key": re.compile(r"\b(?:AIza[A-Za-z0-9_-]{30,}|sk-[A-Za-z0-9_-]{24,}|gh[pousr]_[A-Za-z0-9]{24,})\b"),
             "secret_assignment": re.compile(
@@ -190,7 +222,28 @@ class CaseStudySafetyTests(unittest.TestCase):
                     findings.append(f"{p.relative_to(ROOT)}: {label}")
             if set(email_pattern.findall(content)) - approved_emails:
                 findings.append(f"{p.relative_to(ROOT)}: unapproved email")
+            github_urls = re.findall(
+                r"https?://(?:github\.com|raw\.githubusercontent\.com|api\.github\.com)/[^\s\x60\"'<>\)]+",
+                content, re.IGNORECASE,
+            )
+            if any(not approved_github_destination(url) for url in github_urls):
+                findings.append(f"{p.relative_to(ROOT)}: unapproved GitHub destination")
         self.assertFalse(findings, findings)
+
+    def test_github_destination_allowlist_rejects_lookalikes(self) -> None:
+        from urllib.parse import urlunsplit
+        base = ("vanshverma0401-wq", "setflow-product-case-study")
+        self.assertTrue(approved_github_destination(urlunsplit(("https", "github.com", "/" + "/".join(base), "", ""))))
+        for host, path in [
+            ("github.com", "/example/not-approved"),
+            ("github.com.evil.example", "/" + "/".join(base)),
+            ("api.github.com", "/users/example"),
+            ("github.com", "/example/%2e%2e/not-approved"),
+            ("github.com", "/" + "/".join(base) + "/%2e%2e/not-approved"),
+            ("github.com:8443", "/" + "/".join(base)),
+        ]:
+            with self.subTest(host=host, path=path):
+                self.assertFalse(approved_github_destination(urlunsplit(("https", host, path, "", ""))))
 
     def test_markdown_links_images_and_local_anchors_resolve(self) -> None:
         findings = []
@@ -239,6 +292,7 @@ class CaseStudySafetyTests(unittest.TestCase):
                 self.assertEqual(asset["public_review"], "reviewed", "Asset needs manual public review")
                 self.assertRegex(asset["sha256"], r"^[0-9a-f]{64}$")
                 self.assertEqual(asset["sha256"], hashlib.sha256(p.read_bytes()).hexdigest())
+                self.assertNotIn(asset["sha256"], RETIRED_IMAGE_SHA256, "Retired image bytes must stay out of this gallery")
                 self.assertTrue(asset["description"].strip())
                 if p.suffix.lower() == ".png":
                     self.assertEqual(asset["kind"], "native_simulator_capture")

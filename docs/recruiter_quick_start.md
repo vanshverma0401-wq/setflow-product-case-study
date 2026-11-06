@@ -2,6 +2,8 @@
 
 ### [Explore the SetFlow website review →](https://setflow-review-nov03.vanshverma0401.chatgpt.site)
 
+### [Watch the 1:34 product walkthrough →](https://setflow-review-nov03.vanshverma0401.chatgpt.site/watch.html#momentum)
+
 *Website review copy. The iPhone app is in development; registration is simulated and provides no beta access.*
 
 **Product:** a private, in-development native iPhone strength-training
@@ -12,6 +14,11 @@ retained training history.
 AI-assisted implementation. Vansh guides the product direction and user
 workflows; AI coding agents generated most application code and also assist
 with debugging, tests, and documentation.
+
+The walkthrough covers 15 features with seven recorded scenes and eight still
+interface examples captured November 1, 2026. It joins separate synthetic
+scenarios; it does not establish current app-build correctness or beta access.
+Its original music is optional, and a descriptive transcript is available.
 
 ## Start with three concrete problems
 
@@ -34,8 +41,8 @@ guards, and remaining limits.
 - [Reusable project summary](recruiter_summary.md): a compact description for a
   longer conversation.
 
-Recent development records report local builds and targeted tests. The reviewed
-GitHub jobs did not start, so their status does not establish executed CI checks.
+Recent development records report local builds and targeted tests. The previously reviewed private
+application jobs did not start, so their status does not establish executed CI checks.
 The public-package Python suite checks documentation and assets, not the iOS app.
 
 ## Scope

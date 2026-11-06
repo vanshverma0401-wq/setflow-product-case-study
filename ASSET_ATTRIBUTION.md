@@ -4,6 +4,18 @@ Reviewed October 31, 2026. This page separates original case-study material,
 simulator imagery, and third-party content rendered by the application. It does
 not certify the complete upstream provenance of every source asset.
 
+## November 6 public gallery scope
+
+The current gallery contains seven native PNGs retained from the original
+nine-image capture pass. The earlier body-model rendering and its associated
+older detail image are omitted while their wider-distribution scope is reviewed.
+The retained readiness interface shows its partial simulated-input qualification.
+
+The historical source credits below remain applicable to the material they
+describe. Omission does not certify all upstream rights, remove older commits,
+or change any third-party license. No private native source, raw model, texture
+or anatomical source data is added by this revision.
+
 ## Simulator images
 
 The case study uses application captures from a dedicated simulator scenario

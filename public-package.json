@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "case_study_revision": "2026-11-01",
+  "case_study_revision": "2026-11-06",
   "verification_scope": "public_package_only",
   "source_review_date": "2026-10-31",
-  "package_review_date": "2026-11-01",
+  "package_review_date": "2026-11-06",
   "approved_public_emails": [],
   "files": [
     ".github/workflows/public-package.yml",
@@ -13,6 +13,7 @@
     "EVIDENCE_AND_LIMITATIONS.md",
     "FAQ.md",
     "PRODUCT_DECISIONS.md",
+    "PUBLIC_SHARING_SCOPE.md",
     "README.md",
     "docs/product_expectations.md",
     "docs/product_journey.md",
@@ -27,8 +28,6 @@
     "screenshots/03-rest-resumed.png",
     "screenshots/04-workout-history.png",
     "screenshots/05-report-preview.png",
-    "screenshots/06-recovery-body-map.png",
-    "screenshots/07-missing-data.png",
     "screenshots/08-readiness-coverage.png",
     "screenshots/09-input-validation.png",
     "screenshots/README.md",
@@ -89,7 +88,7 @@
       "path": "screenshots/04-workout-history.png",
       "kind": "native_simulator_capture",
       "sha256": "43e6b39fe480ad659b8530cb1fa3e02cd87655c996d6452d2f9ec19935210ce1",
-      "description": "After another controlled termination and relaunch, History retains three sets of 62.5 kg × eight repetitions: 1.5K kg total.",
+      "description": "After another controlled termination and relaunch, History retains three sets of 62.5 kg \u00d7 eight repetitions: 1.5K kg total.",
       "public_review": "reviewed",
       "capture_date": "2026-10-31",
       "capture_timezone": "America/Chicago",
@@ -102,30 +101,6 @@
       "kind": "native_simulator_capture",
       "sha256": "1b760950521024673f1802c6170344a2bbd1dcbcfa6f581d3ef1881ec2dfbd9c",
       "description": "The retained demonstration workout produces one candidate, one included, zero excluded, three sets, and 1.5K kg in preview. The non-restorable qualification remains visible.",
-      "public_review": "reviewed",
-      "capture_date": "2026-10-31",
-      "capture_timezone": "America/Chicago",
-      "source_review_date": "2026-10-31",
-      "synthetic_data": true,
-      "evidence_status": "current"
-    },
-    {
-      "path": "screenshots/06-recovery-body-map.png",
-      "kind": "native_simulator_capture",
-      "sha256": "3eef5c9399b1011e2d019d16df3a046590d9009112082edc5c3273fc5453f637",
-      "description": "Separate synthetic history seeds chest and biceps work; the thermal view colors those regions and leaves groups without logged evidence grey. See body-model attribution.",
-      "public_review": "reviewed",
-      "capture_date": "2026-10-31",
-      "capture_timezone": "America/Chicago",
-      "source_review_date": "2026-10-31",
-      "synthetic_data": true,
-      "evidence_status": "current"
-    },
-    {
-      "path": "screenshots/07-missing-data.png",
-      "kind": "native_simulator_capture",
-      "sha256": "ae9890c41b047ec4cd85c290f2646a20497b8eaa183f87f3b760b2d3fca96d60",
-      "description": "Selecting Forearms opens its own sheet: no estimate, zero sets, and an explanation of missing history. It does not substitute 100% recovery.",
       "public_review": "reviewed",
       "capture_date": "2026-10-31",
       "capture_timezone": "America/Chicago",
@@ -159,5 +134,12 @@
     }
   ],
   "owner_publication_review": "approved",
-  "owner_publication_approved_date": "2026-11-01"
+  "owner_publication_approved_date": "2026-11-01",
+  "current_gallery": {
+    "png_count": 7,
+    "retained_from_original_nine": 7,
+    "additional_detail_stills": 0,
+    "original_capture_pass_png_count": 9
+  },
+  "presentation_update_authorized_date": "2026-11-06"
 }
