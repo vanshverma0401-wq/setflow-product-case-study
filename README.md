@@ -1,27 +1,45 @@
 # SetFlow — iOS Strength-Training Product Case Study
 
-### [Explore the SetFlow website review →](https://setflow-review-nov03.vanshverma0401.chatgpt.site)
+A native iPhone product connecting **workout planning, set logging, timed rest,
+session recovery and retained training history**. The engineering focus is
+keeping the UI and saved workout record consistent when a user enters values,
+leaves the app, returns and reviews progress.
 
-### [Watch the 1:34 product walkthrough →](https://setflow-review-nov03.vanshverma0401.chatgpt.site/watch.html#momentum)
+**Technology:** Swift · SwiftUI · SwiftData · SceneKit · versioned CSV/JSON reporting.
 
-*Website review copy. The iPhone app is in development; registration is simulated and provides no beta access.*
+**My role:** independent product direction and workflow design, with substantial
+AI-assisted implementation, debugging, tests and documentation. Most application
+code was generated with AI coding agents.
 
-SetFlow connects workout planning, set logging, rest periods, training history,
-and recovery context in a native iPhone application. The project explores a
-practical problem: keeping a training session and its saved record coherent as
-the user plans, trains, leaves the app, returns, and reviews progress.
+**Status:** private app in development, before beta; no App Store release is
+claimed. This public repository is a source-free product case study.
 
-**Status:** private in-development product; not an App Store release. Source
-review: October 31, 2026; public presentation updated November 6, 2026.
-The earlier native capture pass remains dated October 31–November 1, 2026.
-The latest implementation reviewed includes changes
-merged through October 28, 2026, US Central time. Screenshot dates, synthetic
-scenarios, and the behavior visible in each image are recorded in the
-[capture index](screenshots/README.md).
+[90-second overview](docs/recruiter_quick_start.md) · [Product decisions](PRODUCT_DECISIONS.md) · [Evidence and limits](EVIDENCE_AND_LIMITATIONS.md) · [Website review](https://setflow-review-nov03.vanshverma0401.chatgpt.site) · [1:34 walkthrough](https://setflow-review-nov03.vanshverma0401.chatgpt.site/watch.html#momentum)
 
-Start with the [90-second overview](docs/recruiter_quick_start.md), then explore
-the [product decisions](PRODUCT_DECISIONS.md) and
-[evidence and limitations](EVIDENCE_AND_LIMITATIONS.md).
+<p>
+  <img src="screenshots/02-active-workout.png" alt="Native simulator screenshot of active set logging with synthetic workout data" width="240">
+  <img src="screenshots/04-workout-history.png" alt="Native simulator screenshot of three saved synthetic sets retained in History after relaunch" width="240">
+</p>
+
+*Native iOS Simulator examples captured October 31, 2026: active logging and
+History retained after relaunch. The images use a synthetic three-set fixture;
+they do not establish physical-device behavior or release readiness. See the
+[capture record](screenshots/README.md) for dates and scenarios.*
+
+## Skills demonstrated
+
+| Skill area | Concrete project evidence |
+| --- | --- |
+| **Swift, SwiftUI and iOS application state** | Planning → logging → rest → completion → History in the [product journey](docs/product_journey.md) |
+| **SwiftData, local persistence and session lifecycle** | Interrupted-session recovery, valid state transitions and persistence-failure handling in [product decisions](PRODUCT_DECISIONS.md#2-keep-workout-state-and-the-resume-interface-aligned) |
+| **Input validation, locale-aware parsing and unit conversion** | Supported numeric formats and invalid-value refusal before a set is committed in [the input case](PRODUCT_DECISIONS.md#1-preserve-numeric-meaning-from-entry-to-history) |
+| **Data contracts, CSV/JSON reporting and data quality** | Versioned `REPORT_ONLY` exports with eligibility/exclusion rules in [the report boundary](PRODUCT_DECISIONS.md#4-keep-report-scope-explicit) |
+| **Product requirements and verification practice** | Workflow decisions, targeted regression guards, dated simulator evidence and explicit remaining gaps in the [feature matrix](docs/public_feature_matrix.md) and [evidence ledger](EVIDENCE_AND_LIMITATIONS.md) |
+
+Source review: October 31, 2026; the latest implementation reviewed includes
+changes merged through October 28, 2026, US Central time. The public presentation
+was updated November 6, 2026. Earlier native captures remain dated October 31–
+November 1, 2026; this README update does not imply a new native execution.
 
 ## Interactive website review
 
