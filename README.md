@@ -38,8 +38,8 @@ they do not establish physical-device behavior or release readiness. See the
 
 Source review: October 31, 2026; the latest implementation reviewed includes
 changes merged through October 28, 2026, US Central time. The public presentation
-was updated November 6, 2026. Earlier native captures remain dated October 31–
-November 1, 2026; this README update does not imply a new native execution.
+was reviewed November 10, 2026. Native captures remain dated October 31–
+November 1, 2026; documentation changes do not imply a new native execution.
 
 ## Interactive website review
 
@@ -51,14 +51,11 @@ The permanent GitHub case study and its evidence notes remain the primary refere
 
 ## My role and development approach
 
-SetFlow is my independently directed product project. I guide the product
-direction and user workflows, using AI coding agents for substantial
-implementation, debugging, tests, and documentation. Most application code was
-generated with AI assistance.
-
-The walkthrough connects product decisions to implementation evidence and
-observed behavior. Detailed contribution and verification boundaries are in the
-[evidence ledger](EVIDENCE_AND_LIMITATIONS.md).
+My contribution centers on product direction, workflow decisions and review of
+agent-assisted implementation. The [decision record](PRODUCT_DECISIONS.md)
+connects those choices to implementation evidence and observed behavior; the
+[evidence ledger](EVIDENCE_AND_LIMITATIONS.md) records contribution and
+verification boundaries. The AI-assistance disclosure above applies throughout.
 
 ## The main user journey
 
@@ -70,7 +67,7 @@ observed behavior. Detailed contribution and verification boundaries are in the
    History; repeat an earlier workout through the cloning flow.
 5. **Use the record:** generate a qualified CSV or JSON workout report for review.
 
-Fresh focused simulator checks demonstrate logging, rest restoration after
+Dated focused simulator checks demonstrate logging, rest restoration after
 relaunch, completion, retained History, and report preview using synthetic data.
 The builder and recovery examples use separate scenarios. The
 [feature matrix](docs/public_feature_matrix.md) distinguishes these checks from
